@@ -117,4 +117,20 @@ button {
 .now {
   font-size: 40px;
 }
+.date1,
+.date2,
+.date3,
+.date4,
+.date5,
+.date6 {
+  font-weight: bold;
+}
 
+.icon1,
+.icon2,
+.icon3,
+.icon4,
+.icon5,
+.icon6 {
+  text-align: center;
+}
