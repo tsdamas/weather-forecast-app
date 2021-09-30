@@ -134,3 +134,31 @@ button {
 .icon6 {
   text-align: center;
 }
+.col-sm-9 {
+  width: 70%;
+}
+
+.col-sm-3 {
+  width: 30%;
+}
+.col-3 {
+  width: 10%;
+}
+.col-4,
+.col-5,
+.col-7 {
+  width: 15%;
+}
+
+.col-6 {
+  width: 40%;
+}
+
+.row-8,
+.row-9,
+.row-10,
+.row-11,
+.row-12,
+.row-13 {
+  height: 16.666666%;
+}
