@@ -91,3 +91,30 @@ button {
   );
   color: #fff;
 }
+.date,
+.description {
+  text-align: center;
+}
+
+.now-temperature {
+  text-align: left;
+  font-size: 55px;
+  font-weight: lighter;
+}
+
+.feels {
+  text-align: right;
+}
+
+.pressure-value,
+#humidity,
+#wind,
+.visibility {
+  text-align: right;
+}
+
+.status1,
+.now {
+  font-size: 40px;
+}
+
