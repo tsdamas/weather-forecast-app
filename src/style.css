@@ -32,3 +32,22 @@ body {
 
   padding: 20px;
 }
+input {
+  width: 200px;
+  height: 25px;
+  position: relative;
+}
+
+button {
+  margin: auto;
+  display: inline;
+  border: none;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  background-color: transparent;
+  color: #fff;
+  text-align: center;
+  width: 35px;
+  height: 25px;
+}
