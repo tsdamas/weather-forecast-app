@@ -34,7 +34,7 @@ body {
 }
 input {
   width: 200px;
-  height: 25px;
+  height: 30px;
   position: relative;
 }
 
@@ -63,15 +63,18 @@ button {
 }
 .fa-chevron-down {
   font-family: FontAwesome, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: white;
   background-color: transparent;
+  color: white;
   border: none;
-  width: 35px;
-  height: 25px;
+  font-size: 30px;
+  width: 40px;
 }
-.container {
+
+#current-location-button {
+  font-size: 30px;
+}
+.container-body {
   height: 100%;
-  display: block;
   margin: 80px auto;
   max-width: 600px;
   padding: 20px;
@@ -91,6 +94,7 @@ button {
   );
   color: #fff;
 }
+
 .date,
 .description {
   text-align: center;
@@ -117,6 +121,7 @@ button {
 .now {
   font-size: 40px;
 }
+
 .date1,
 .date2,
 .date3,
@@ -124,6 +129,7 @@ button {
 .date5,
 .date6 {
   font-weight: bold;
+  text-align: right;
 }
 
 .icon1,
@@ -134,6 +140,7 @@ button {
 .icon6 {
   text-align: center;
 }
+
 .col-sm-9 {
   width: 70%;
 }
@@ -144,9 +151,12 @@ button {
 .col-3 {
   width: 10%;
 }
-.col-4,
-.col-5,
-.col-7 {
+.col-4.col-sm-2,
+.col-5.col-sm-2 {
+  width: 20%;
+}
+
+.col-7.col-sm-2 {
   width: 15%;
 }
 
@@ -154,6 +164,9 @@ button {
   width: 40%;
 }
 
+.col-7 {
+  text-align: right;
+}
 .row-8,
 .row-9,
 .row-10,
