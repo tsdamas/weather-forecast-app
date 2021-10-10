@@ -23,7 +23,7 @@ hourNow();
 function displayWeatherCondition(response) {
   document.querySelector("#search-engine").innerHTML = response.data.name;
   document.querySelector(".now-temperature").innerHTML =
-    Math.round(response.data.main.temp) + "º";
+    Math.round(response.data.main.temp);
   document.querySelector(".feels").innerHTML =
     Math.round(response.data.main.feels_like) + "º";
   document.querySelector("#humidity").innerHTML =
