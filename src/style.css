@@ -71,7 +71,6 @@ a {
   color: rgb(122, 169, 245);
 }
 
-
 #search-engine {
   background-color: transparent;
   border: none;
@@ -186,7 +185,7 @@ a {
   right: -12px;
 }
 
-.temp{
+.temp {
   width: 50px;
 }
 .col-3 {
@@ -215,4 +214,9 @@ a {
 .row-12,
 .row-13 {
   height: 16.666666%;
+}
+
+.source {
+  text-decoration: underline;
+  color: #585e92;
 }
