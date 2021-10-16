@@ -20,8 +20,67 @@ function hourNow(response) {
 }
 hourNow();
 
+function formatDay(timestamp){
+  let date = new Date (timestamp * 1000);
+  let day = date.getDay();
+  let days = ["S", "M", "T", "W", "T", "F", "S"];
+
+  return days[day];
+}
+
+function displayForecast (response){
+    console.log(response.data);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+let forecastHTML = `<div class="col-sm-9">`;
+forecast.forEach(function (forecastDay, index){
+  if(index < 6) {
+  forecastHTML = forecastHTML +
+`<div class="row row-8">
+  <div class="col-3 col-sm-2">
+    <p class="date1">
+      ${formatDay(forecastDay.dt)}
+    </p>
+  </div>
+  <div class="col-4 col-sm-2">
+    <img 
+      src ="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
+      alt=""
+      width="45" 
+      />
+  </div>
+  <div class="col-5 col-sm-2">
+    <p id="first-max-temp">
+      ${Math.round(forecastDay.temp.max)}º
+    </p>
+  </div>
+  <div class="col-6 col-sm-2">
+    <p class="scale1">
+      scale
+    </p>
+  </div>
+  <div class="col-7 col-sm-2">
+    <p id="first-min-temp">
+     ${Math.round(forecastDay.temp.min)}º
+    </p>
+  </div>`;}
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML
+}
+);
+
+
+}
+
+function getForecast(coordinates){
+let apiKey ="0581a5c52e36d81c89d13f976ae61d0c"
+let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
+axios.get(apiUrl).then(displayForecast); 
+}
+
 function displayWeatherCondition(response) {
-  console.log(response.data);
   document.querySelector("#search-engine").innerHTML = response.data.name;
   document.querySelector(".now-temperature").innerHTML =
     Math.round(celsiusTemperature);
@@ -40,6 +99,9 @@ function displayWeatherCondition(response) {
   iconElement.setAttribute("alt", response.data.weather[0].description)
   
   celsiusTemperature = response.data.main.temp;
+
+  getForecast(response.data.coord);
+
 }
 
 function searchCity(city) {
