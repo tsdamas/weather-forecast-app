@@ -70,14 +70,70 @@ forecast.forEach(function (forecastDay, index){
   forecastElement.innerHTML = forecastHTML
 }
 );
-
-
 }
+
+function formatAMPM(UNIX_timestamp) {
+  let date = new Date(UNIX_timestamp * 1000);
+  return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+}
+
+function displayHourly (response){
+
+  let hourly = response.data.hourly; 
+  let hourlyElement = document.querySelector("#hourly");
+
+  let hourlyHTML = `<div class="row row-bottom">
+  <div class="col-sm-12">`;
+hourly.forEach(function (forecastHour, index) {
+    if(index < 6) {
+      hourlyHTML = hourlyHTML + 
+    `<div class="row row-bottom">
+  <div class="col-sm-12">
+    <div class="row row-bottom-1">
+      <div class="col-bottom-1 col-sm-2">
+        <p class="hour1">
+          ${formatAMPM(forecastHour.dt)}
+        </p>
+      </div>
+<div class="row row-bottom-2">
+      <div class="col-bottom-2 col-sm-2">
+      <img 
+      src ="http://openweathermap.org/img/wn/${forecastHour.weather[0].icon}@2x.png"
+      alt=""
+      width="45" 
+      />
+      </div>
+<div class="row row-bottom-3">
+      <div class="col-bottom-3 col-sm-2">
+        <p class="first-hour-temperature">
+          ${Math.round(response.data.hourly.temp)}
+        </p>
+      </div>
+<div class="row row-bottom-4">
+      <div class="col-bottom-4 col-sm-2">
+        <p class="feels1">
+          Feels ${Math.round(response.data.hourly.feels_like)}
+        </p>
+      </div>
+<div class="row row-bottom-5">
+      <div class="col-bottom-5 col-sm-2">
+        <p class="prep1">
+          ${response.data.hourly.humidity}%
+        </p>
+      </div>
+</div>`;}
+
+  hourlyHTML = hourlyHTML + `</div>`;
+  hourlyElement.innerHTML = hourlyHTML;
+}
+);
+}
+
 
 function getForecast(coordinates){
 let apiKey ="0581a5c52e36d81c89d13f976ae61d0c"
 let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
-axios.get(apiUrl).then(displayForecast); 
+axios.get(apiUrl).then(displayForecast, displayHourly); 
 }
 
 function displayWeatherCondition(response) {
