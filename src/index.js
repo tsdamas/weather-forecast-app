@@ -29,7 +29,6 @@ function formatDay(timestamp){
 }
 
 function displayForecast (response){
-    console.log(response.data);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
@@ -70,11 +69,15 @@ forecast.forEach(function (forecastDay, index){
   forecastElement.innerHTML = forecastHTML
 }
 );
+displayHourly(response);
 }
 
 function formatAMPM(UNIX_timestamp) {
   let date = new Date(UNIX_timestamp * 1000);
-  return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+  return date.toLocaleString('en-US', { 
+    hour: 'numeric', 
+    hour12: true 
+  });
 }
 
 function displayHourly (response){
@@ -194,32 +197,32 @@ function displayHourly (response){
     <div class="row row-bottom-4">
       <div class="col-bottom-4 col-sm-2">
         <p class="feels1">
-          Feels ${response.data.hourly[0].feels_like}º
+          Feels ${Math.round(response.data.hourly[0].feels_like)}º
         </p>
       </div>
       <div class="col-bottom-2 col-sm-2">
         <p class="feels2">
-          Feels ${response.data.hourly[1].feels_like}º
+          Feels ${Math.round(response.data.hourly[1].feels_like)}º
         </p>
       </div>
       <div class="col-bottom-3 col-sm-2">
         <p class="feels2">
-          Feels ${response.data.hourly[2].feels_like}º
+          Feels ${Math.round(response.data.hourly[2].feels_like)}º
         </p>
       </div>
       <div class="col-bottom-4 col-sm-2">
         <p class="feels3">
-          Feels ${response.data.hourly[3].feels_like}º
+          Feels ${Math.round(response.data.hourly[3].feels_like)}º
         </p>
       </div>
       <div class="col-bottom-5 col-sm-2">
         <p class="feels4">
-          Feels ${response.data.hourly[4].feels_like}º
+          Feels ${Math.round(response.data.hourly[4].feels_like)}º
         </p>
       </div>
       <div class="col-bottom-6 col-sm-2">
         <p class="feels5">
-          Feels ${response.data.hourly[5].feels_like}º
+          Feels ${Math.round(response.data.hourly[5].feels_like)}º
         </p>
       </div>
     </div>
@@ -262,13 +265,11 @@ function displayHourly (response){
   hourlyElement.innerHTML = hourlyHTML;
 }
 
-displayHourly(); 
-
 
 function getForecast(coordinates){
 let apiKey ="0581a5c52e36d81c89d13f976ae61d0c"
 let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
-axios.get(apiUrl).then(displayForecast, displayHourly); 
+axios.get(apiUrl).then(displayForecast); 
 }
 
 function displayWeatherCondition(response) {
