@@ -78,56 +78,191 @@ function formatAMPM(UNIX_timestamp) {
 }
 
 function displayHourly (response){
-
-  let hourly = response.data.hourly; 
   let hourlyElement = document.querySelector("#hourly");
 
-  let hourlyHTML = `<div class="row row-bottom">
-  <div class="col-sm-12">`;
-hourly.forEach(function (forecastHour, index) {
-    if(index < 6) {
-      hourlyHTML = hourlyHTML + 
-    `<div class="row row-bottom">
+  let hourlyHTML =
+  `<div class="row row-bottom">
   <div class="col-sm-12">
     <div class="row row-bottom-1">
       <div class="col-bottom-1 col-sm-2">
         <p class="hour1">
-          ${formatAMPM(forecastHour.dt)}
+          ${formatAMPM(response.data.hourly[0].dt)}
         </p>
       </div>
-<div class="row row-bottom-2">
       <div class="col-bottom-2 col-sm-2">
-      <img 
-      src ="http://openweathermap.org/img/wn/${forecastHour.weather[0].icon}@2x.png"
+        <p class="hour2">
+          ${formatAMPM(response.data.hourly[1].dt)}
+        </p>
+      </div>
+      <div class="col-bottom-3 col-sm-2">
+        <p class="hour3">
+          ${formatAMPM(response.data.hourly[2].dt)}
+        </p>
+      </div>
+      <div class="col-bottom-4 col-sm-2">
+        <p class="hour3">
+          ${formatAMPM(response.data.hourly[3].dt)}
+        </p>
+      </div>
+      <div class="col-bottom-5 col-sm-2">
+        <p class="hour4">
+          ${formatAMPM(response.data.hourly[4].dt)}
+        </p>
+      </div>
+      <div class="col-bottom-6 col-sm-2">
+        <p class="hour5">
+          ${formatAMPM(response.data.hourly[5].dt)}
+        </p>
+      </div>
+    </div>
+    <div class="row row-bottom-2">
+      <div class="col-bottom-2 col-sm-2">
+        <img 
+      src ="http://openweathermap.org/img/wn/${response.data.hourly[0].weather[0].icon}@2x.png"
       alt=""
       width="45" 
       />
       </div>
-<div class="row row-bottom-3">
+      <div class="col-bottom-2 col-sm-2">
+        <img 
+      src ="http://openweathermap.org/img/wn/${response.data.hourly[1].weather[0].icon}@2x.png"
+      alt=""
+      width="45" 
+      />
+      </div>
+      <div class="col-bottom-3 col-sm-2">
+         <img 
+      src ="http://openweathermap.org/img/wn/${response.data.hourly[2].weather[0].icon}@2x.png"
+      alt=""
+      width="45" 
+      />
+      </div>
+      <div class="col-bottom-4 col-sm-2">
+         <img 
+      src ="http://openweathermap.org/img/wn/${response.data.hourly[3].weather[0].icon}@2x.png"
+      alt=""
+      width="45" 
+      />
+      </div>
+      <div class="col-bottom-5 col-sm-2">
+         <img 
+      src ="http://openweathermap.org/img/wn/${response.data.hourly[4].weather[0].icon}@2x.png"
+      alt=""
+      width="45" 
+      />
+      </div>
+      <div class="col-bottom-6 col-sm-2">
+        <img 
+      src ="http://openweathermap.org/img/wn/${response.data.hourly[5].weather[0].icon}@2x.png"
+      alt=""
+      width="45" 
+      />
+      </div>
+    </div>
+    <div class="row row-bottom-3">
       <div class="col-bottom-3 col-sm-2">
         <p class="first-hour-temperature">
-          ${Math.round(response.data.hourly.temp)}
+          ${Math.round(response.data.hourly[0].temp)}º
         </p>
       </div>
-<div class="row row-bottom-4">
+      <div class="col-bottom-2 col-sm-2">
+        <p class="temper2">
+           ${Math.round(response.data.hourly[1].temp)}º
+        </p>
+      </div>
+      <div class="col-bottom-3 col-sm-2">
+        <p class="temper3">
+           ${Math.round(response.data.hourly[2].temp)}º
+        </p>
+      </div>
+      <div class="col-bottom-4 col-sm-2">
+        <p class="temper4">
+           ${Math.round(response.data.hourly[3].temp)}º
+        </p>
+      </div>
+      <div class="col-bottom-5 col-sm-2">
+        <p class="temper5">
+           ${Math.round(response.data.hourly[3].temp)}º
+        </p>
+      </div>
+      <div class="col-bottom-6 col-sm-2">
+        <p class="temper6">
+           ${Math.round(response.data.hourly[4].temp)}º
+        </p>
+      </div>
+    </div>
+    <div class="row row-bottom-4">
       <div class="col-bottom-4 col-sm-2">
         <p class="feels1">
-          Feels ${Math.round(response.data.hourly.feels_like)}
+          Feels ${response.data.hourly[0].feels_like}º
         </p>
       </div>
-<div class="row row-bottom-5">
+      <div class="col-bottom-2 col-sm-2">
+        <p class="feels2">
+          Feels ${response.data.hourly[1].feels_like}º
+        </p>
+      </div>
+      <div class="col-bottom-3 col-sm-2">
+        <p class="feels2">
+          Feels ${response.data.hourly[2].feels_like}º
+        </p>
+      </div>
+      <div class="col-bottom-4 col-sm-2">
+        <p class="feels3">
+          Feels ${response.data.hourly[3].feels_like}º
+        </p>
+      </div>
+      <div class="col-bottom-5 col-sm-2">
+        <p class="feels4">
+          Feels ${response.data.hourly[4].feels_like}º
+        </p>
+      </div>
+      <div class="col-bottom-6 col-sm-2">
+        <p class="feels5">
+          Feels ${response.data.hourly[5].feels_like}º
+        </p>
+      </div>
+    </div>
+    <div class="row row-bottom-5">
       <div class="col-bottom-5 col-sm-2">
         <p class="prep1">
-          ${response.data.hourly.humidity}%
+          ${response.data.hourly[0].humidity}%
         </p>
       </div>
-</div>`;}
-
-  hourlyHTML = hourlyHTML + `</div>`;
+      <div class="col-bottom-2 col-sm-2">
+        <p class="prep2">
+          ${response.data.hourly[1].humidity}%
+        </p>
+      </div>
+      <div class="col-bottom-3 col-sm-2">
+        <p class="prep2">
+          ${response.data.hourly[2].humidity}%
+        </p>
+      </div>
+      <div class="col-bottom-4 col-sm-2">
+        <p class="prep3">
+          ${response.data.hourly[3].humidity}%
+        </p>
+      </div>
+      <div class="col-bottom-5 col-sm-2">
+        <p class="prep4">
+          ${response.data.hourly[4].humidity}%
+        </p>
+      </div>
+      <div class="col-bottom-6 col-sm-2">
+        <p class="prep5">
+          ${response.data.hourly[5].humidity}%
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+`;
   hourlyElement.innerHTML = hourlyHTML;
 }
-);
-}
+
+displayHourly(); 
 
 
 function getForecast(coordinates){
