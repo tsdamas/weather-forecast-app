@@ -53,21 +53,22 @@ button {
   height: 25px;
 }
 
-a {
-  font-weight: 600;
-  color: #fff;
-}
 
-.active {
+.degree .active {
   cursor: default;
-  text-decoration: none;
   font-weight: bold;
   color: #fff;
   font-size: 10px;
+  text-decoration: none;
 }
 
-.active:hover {
-  text-decoration: underline;
+.degree .active:hover {
+  text-decoration: none;
+  color: rgb(122, 169, 245);
+}
+
+#fahrenheit-link{
+  font-weight: bold;
   color: rgb(122, 169, 245);
 }
 
@@ -81,6 +82,7 @@ a {
 .units {
   display: inline;
   font-size: 10px;
+  float: right;
 }
 
 .fa-chevron-down {
@@ -128,10 +130,6 @@ a {
   font-size: 55px;
   font-weight: lighter;
   display: inline;
-}
-
-.units {
-  float: right;
 }
 
 .feelslike {
