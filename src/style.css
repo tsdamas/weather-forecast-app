@@ -239,3 +239,7 @@ button {
   text-align: left;
   padding-left: 20px;
 }
+
+hr{
+border: 2px solid white;
+}

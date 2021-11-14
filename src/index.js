@@ -56,7 +56,7 @@ forecast.forEach(function (forecastDay, index){
   </div>
   <div class="col-6 col-sm-2">
     <p class="scale1">
-      scale
+      <hr />
     </p>
   </div>
   <div class="col-7 col-sm-2">
