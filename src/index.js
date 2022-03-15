@@ -58,17 +58,6 @@ function formatDay(timestamp){
     function renderChart(series){
       JSC.Chart ('chartDiv', {
         debug: true, 
-        //show right label outside bars with min and max value      
-        // defaultPoint: {
-        //   outline_width: 0, 
-        //   label: {
-        //     visible: true, 
-        //     text: "%yValueºC", 
-        //     placement:"outside",
-        //     style: { fontSize: 11, fontWeight: "bold", color: "#48484a" },
-        //     autoHide: false
-        //   }, 
-        //},
         type: 'horizontal column solid', 
        legend: {
         position: 'bottom',
