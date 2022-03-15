@@ -36,14 +36,12 @@ function formatDay(timestamp){
     var jsonToSeries = (response) => {
       let forecast = response.data.daily;
       forecast.shift();
-      console.log(forecast);
       let max = []; min = [];
       forecast.forEach(function (row) {
         //add either to days, max and min
         max.push({ x: (formatDay(row.dt)), y: Math.round(row.temp.max) });
         min.push({ x: (formatDay(row.dt)), y: -Math.round((row.temp.min)) });
       });
-      console.log([max, min]);
       var series = [{ name: 'Min', points: min }, { name: 'Max', points: max }];
       renderChart(series); 
       displayHourly(response); 
