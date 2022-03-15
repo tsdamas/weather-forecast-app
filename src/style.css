@@ -25,12 +25,7 @@ p {
 }
 
 body {
-  background: radial-gradient(
-    circle at 10% 20%,
-    rgba(216, 241, 230, 0.46) 0.1%,
-    rgba(233, 226, 226, 0.28) 90.1%
-  );
-
+  background-color: #F3FBFE;
   padding: 20px;
 }
 input {
@@ -47,16 +42,17 @@ button {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   background-color: transparent;
-  color: #fff;
+  color: #48484a;
   text-align: center;
   width: 35px;
   height: 25px;
 }
 
+
 .degree .active {
   cursor: default;
   font-weight: bold;
-  color: #fff;
+  color: #48484a;
   font-size: 10px;
   text-decoration: none;
 }
@@ -75,7 +71,7 @@ button {
   background-color: transparent;
   border: none;
   text-align: center;
-  color: white;
+  color: #48484a;
 }
 
 .units {
@@ -87,10 +83,14 @@ button {
 .fa-chevron-down {
   font-family: FontAwesome, "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: transparent;
-  color: white;
+  color: #48484a;
   border: none;
   font-size: 30px;
   width: 40px;
+}
+
+.fa-search-location {
+  color: #48484a;
 }
 
 #current-location-button {
@@ -100,23 +100,12 @@ button {
 .container-body {
   height: 100%;
   margin: 80px auto;
-  max-width: 600px;
+  max-width: 700px;
   padding: 20px;
   box-shadow: 8px 8px 8px 0px rgb(37 39 89 / 8%);
   border-radius: 20px;
-  background: linear-gradient(
-    to bottom,
-    #505285 0%,
-    #585e92 12%,
-    #65689f 25%,
-    #7474b0 37%,
-    #7e7ebb 50%,
-    #8389c7 62%,
-    #9795d4 75%,
-    #a2a1dc 87%,
-    #b5aee4 100%
-  );
-  color: #fff;
+  background: #fff;
+  color: #48484a;
 }
 
 .date,
@@ -166,16 +155,10 @@ button {
   text-align: center;
 }
 
-#forecast {
-  width: 70%;
-  padding-left: 25px;
-  padding-top: 10px;
-  padding-right: 0px;
-}
-
 .col-sm-3 {
-  width: 30%;
+  width: 33.3%;
   padding: 10px;
+  margin-right: 50px;
 }
 
 .col-sm-6 {
@@ -240,6 +223,8 @@ button {
   padding-left: 20px;
 }
 
-hr{
-border: 2px solid white;
+.chartDiv{
+  border-radius: 100px;
+  margin-left: 50px;
 }
+

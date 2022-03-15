@@ -118,7 +118,11 @@
       </div>
     </div>
   </div>
-  <div class="weather-forecast" id="forecast">
+  <!---
+      Added bar chart from JSCharting library comparing minimum and maximum forecast temperatures
+      JSdocs: https://jscharting.com/documentation/#node=Tutorials.legend
+      --->
+  <div id="chartDiv" style="max-width: 380px;height: 380px"></div>
   </div>
 </div>
 <br />
@@ -128,7 +132,8 @@
 <h6>
   <a href="https://github.com/tsdamas/Weather-Forecast-app" class="source">Open Source code</a> by Thais Damasceno
 </h6>
-<script src="src/index.js"></script>
-</html>
+
 </body>
+<script src="src/index.js"></script>
+<script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
 </html>

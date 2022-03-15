@@ -23,54 +23,90 @@ hourNow();
 function formatDay(timestamp){
   let date = new Date (timestamp * 1000);
   let day = date.getDay();
-  let days = ["S", "M", "T", "W", "T", "F", "S"];
+  let days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
   return days[day];
 }
 
-function displayForecast (response){
-  let forecast = response.data.daily;
-  let forecastElement = document.querySelector("#forecast");
+/**
+ * 
+ * @param {object data from API=} response 
+ */    
 
-let forecastHTML = `<div class="col-sm-9">`;
-forecast.forEach(function (forecastDay, index){
-  if(index < 6) {
-  forecastHTML = forecastHTML +
-`<div class="row row-8">
-  <div class="col-3 col-sm-2">
-    <p class="date1">
-      ${formatDay(forecastDay.dt)}
-    </p>
-  </div>
-  <div class="col-4 col-sm-2">
-    <img 
-      src ="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
-      alt=""
-      width="45" 
-      />
-  </div>
-  <div class="col-5 col-sm-2">
-    <p id="first-max-temp">
-      ${Math.round(forecastDay.temp.max)}º
-    </p>
-  </div>
-  <div class="col-6 col-sm-2">
-    <p class="scale1">
-      <hr />
-    </p>
-  </div>
-  <div class="col-7 col-sm-2">
-    <p id="first-min-temp">
-     ${Math.round(forecastDay.temp.min)}º
-    </p>
-  </div>`;}
+    var jsonToSeries = (response) => {
+      let forecast = response.data.daily;
+      forecast.shift();
+      console.log(forecast);
+      let max = []; min = [];
+      forecast.forEach(function (row) {
+        //add either to days, max and min
+        max.push({ x: (formatDay(row.dt)), y: Math.round(row.temp.max) });
+        min.push({ x: (formatDay(row.dt)), y: -Math.round((row.temp.min)) });
+      });
+      console.log([max, min]);
+      var series = [{ name: 'Min', points: min }, { name: 'Max', points: max }];
+      renderChart(series); 
+      displayHourly(response); 
 
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML
-}
-);
-displayHourly(response);
-}
+    };
+
+/**
+ * 
+ * @param {array} series 
+ */    
+    
+    function renderChart(series){
+      JSC.Chart ('chartDiv', {
+        debug: true, 
+        //show right label outside bars with min and max value      
+        // defaultPoint: {
+        //   outline_width: 0, 
+        //   label: {
+        //     visible: true, 
+        //     text: "%yValueºC", 
+        //     placement:"outside",
+        //     style: { fontSize: 11, fontWeight: "bold", color: "#48484a" },
+        //     autoHide: false
+        //   }, 
+        //},
+        type: 'horizontal column solid', 
+       legend: {
+        position: 'bottom',
+        template: '%icon,%name',
+        },
+        chartArea: {
+          fill: false,
+          opacity: 0.01
+        },
+      xAxis: {  
+        staticColumnWidth: 20,
+        defaultTick: { 
+        gridLine_visible: false, 
+        placement: 'outside',
+        label_offset: "%yValueºC"
+
+      }
+        },
+      yAxis: { 
+        visible: false,
+        label:{
+          placement: "outside", 
+        },
+        scale: { 
+        type: "stacked", 
+        range: [-15, 25]
+        
+      }, 
+    },
+      palette:[
+        "#D2E4F7",
+        "#EC6E4C"
+      ],  
+      chartArea_fill: false,
+      series: series
+       });
+    }
+    renderChart(); 
 
 function formatAMPM(UNIX_timestamp) {
   let date = new Date(UNIX_timestamp * 1000);
@@ -265,11 +301,11 @@ function displayHourly (response){
   hourlyElement.innerHTML = hourlyHTML;
 }
 
-
-function getForecast(coordinates){
-let apiKey ="0581a5c52e36d81c89d13f976ae61d0c"
-let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
-axios.get(apiUrl).then(displayForecast); 
+// fetching data chart 
+  function getForecast(coordinates){
+  let apiKey ="0581a5c52e36d81c89d13f976ae61d0c"
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
+  axios.get(apiUrl).then(jsonToSeries, renderChart); 
 }
 
 function displayWeatherCondition(response) {
@@ -352,3 +388,51 @@ let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentLocation);
 
 searchCity("Vancouver");
+
+fetch('https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&appid=0581a5c52e36d81c89d13f976ae61d0c&units=metric')
+.then(response => response.json())
+.then(json => {
+let series = jsonToSeries(json);
+renderChart(series);
+});
+
+
+function jsonToSeries(json) {
+  let data = json.daily; 
+  console.log(data);
+   let max = []; min = []; 
+	data.forEach(function (row) {
+		 //add either to days, max and min or disregard
+    max.push({x:(formatDay(row.dt)), y:row.temp.max});
+    min.push({x:(formatDay(row.dt)), y:-(row.temp.min)});
+    });
+    console.log([max, min]);
+    return [ 
+      {name:'Min', points: min},
+      {name:'Max', points: max}
+    ]
+  }
+
+function renderChart(series){
+   JSC.Chart('chartDiv', {
+    debug: true, 
+    type: 'horizontal column', 
+    legendVisible: true, 
+  xAxis: {  
+    crosshair_enabled: false,
+    defaultTick: { 
+    gridLine_visible: false
+    }, 
+    },
+  yAxis: { 
+    visible: false,
+    scale_type: 'stacked',
+  },
+  palette:[
+    "#000000"
+  ],  
+  chartArea_fill:  ["white",.1],
+    series: series
+   });
+
+}
