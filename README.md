@@ -10,7 +10,7 @@ Welcome to Weather App fellow Developer, this is where you find dictionary appli
 - Get a the daily forecast information for 7 days;
 - Hourly forecast for the next 5 hours;
 
-It was my first weather app, I faced some challenges building the graph for the forecast weather and turn it completly responsive is my next improvement.
+It was my first weather app, I faced some challenges building the graph for the forecast weather and turn it completely responsive is my next improvement.
 
 ## Contribution Guidelines
 
@@ -23,7 +23,7 @@ Note: When you Add a project Add it to the README for ease of finding it Note: P
 ## Requirements
 This module requires no modules outside of the branch. 
 
-To use the Open Wheather API, you will need to get a key to access the information. 
+To use the Open Weather API, you will need to get a key to access the information. 
 
 ## License
 
