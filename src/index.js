@@ -1,3 +1,4 @@
+//Display the current time in the header
 function hourNow(response) {
   let now = new Date();
   let h2 = document.querySelector("h2.hour");
@@ -20,6 +21,8 @@ function hourNow(response) {
 }
 hourNow();
 
+//Formatting the date of the API response
+
 function formatDay(timestamp){
   let date = new Date (timestamp * 1000);
   let day = date.getDay();
@@ -29,8 +32,8 @@ function formatDay(timestamp){
 }
 
 /**
- * 
- * @param {object data from API=} response 
+ * Working with the API data to draw the chart
+ * @param {object} response 
  */    
 
     var jsonToSeries = (response) => {
@@ -45,11 +48,11 @@ function formatDay(timestamp){
       var series = [{ name: 'Min', points: min }, { name: 'Max', points: max }];
       renderChart(series); 
       displayHourly(response); 
-
     };
 
 /**
- * 
+ * Getting the organized data and transfering it in array format 
+ * to render the chart
  * @param {array} series 
  */    
     
@@ -95,6 +98,7 @@ function formatDay(timestamp){
     }
     renderChart(); 
 
+//Display 12 hour model    
 function formatAMPM(UNIX_timestamp) {
   let date = new Date(UNIX_timestamp * 1000);
   return date.toLocaleString('en-US', { 
@@ -103,9 +107,13 @@ function formatAMPM(UNIX_timestamp) {
   });
 }
 
+/**
+ * Display hourly forecast 
+ * @param {object} series 
+ */    
+
 function displayHourly (response){
   let hourlyElement = document.querySelector("#hourly");
-
   let hourlyHTML =
   `<div class="row row-bottom">
   <div class="col-sm-12">
@@ -288,12 +296,20 @@ function displayHourly (response){
   hourlyElement.innerHTML = hourlyHTML;
 }
 
-// fetching data chart 
+/**
+ * Fetching data from API, send it to the functions responsible to draw the chart
+ * @param {object} coordinates 
+ */
   function getForecast(coordinates){
   let apiKey ="0581a5c52e36d81c89d13f976ae61d0c"
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`
   axios.get(apiUrl).then(jsonToSeries, renderChart); 
 }
+
+/**
+ * Working with the API data and transfering to the user interface
+ * @param {object} response 
+ */
 
 function displayWeatherCondition(response) {
   document.querySelector("#search-engine").innerHTML = response.data.name;
@@ -319,17 +335,34 @@ function displayWeatherCondition(response) {
 
 }
 
+/**
+ * Getting the API response and transfering it to organize the data in 
+ * DisplayWeatherCondition and jsonToSeries
+ * @param {string} city 
+ */
+
 function searchCity(city) {
   let apiKey = "0581a5c52e36d81c89d13f976ae61d0c";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition, jsonToSeries);
 }
 
+/**
+ * Event handler to get the value from the input when the user types on it and 
+ * transfer it narrow down the API response 
+ */
+
+ 
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#search-engine").value;
   searchCity(city);
 }
+
+/**
+ * Getting the coordinates to 
+ * @param {object value} position 
+ */
 
 function searchLocation(position) {
   let apiKey = "0581a5c52e36d81c89d13f976ae61d0c";
@@ -337,12 +370,22 @@ function searchLocation(position) {
   axios.get(apiUrl).then(displayWeatherCondition, jsonToSeries);
 }
 
+/**
+ * Using the geolocation method to get the coordinates and 
+ * transfer it to searchLocation function
+*/
+
 function getCurrentLocation(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(
     searchLocation);
 }
 
+/**
+* Event to display the fahrenheit temperature and 
+* allows the user to change to celsius temp after 
+* by removing and adding the active class from the link
+*/
 function displayFahrenheitTemperature (event) {
 event.preventDefault();
 let temperatureElement = document.querySelector(".now-temperature");
