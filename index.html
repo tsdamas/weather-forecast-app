@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Forecast App</title>
+  <!--Fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-  <link rel="stylesheet" href="src/style.css">
   <script src="https://kit.fontawesome.com/808afd20ec.js" crossorigin="anonymous"></script>
+  <!--Style-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="src/style.css">
+  <!--Axios-->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!--Chart-->
   <script src="https://code.jscharting.com/latest/jscharting.js"></script>
-  </head>
+</head>
+
 <body>
+
   <body>
     <div class="container-body">
       <form id="search-form">
@@ -27,115 +34,115 @@
           </button>
         </h1>
       </form>
-<h2 class="hour">
-  11:50 am
-</h2>
-<div class="row row-top">
-  <div class="col-sm-3">
-    <div class="row row-1">
-      <div class="today col-sm-12">
-        <h3 class="date">
-          Monday
-        </h3>
-        <p class="description">
-          Partly Cloud
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="icon1 col-sm-6">
-      <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" 
-      alt="Clear"  
-      id="icon" />
-      </div>
-      <div class="col-sm-6 temp">
-        <strong class="now-temperature">
-          15
-        </strong>
+      <h2 class="hour">
+        11:50 am
+      </h2>
+      <!--Current weather information-->
+      <div class="row row-top">
+        <div class="col-sm-3">
+          <div class="row row-1">
+            <div class="today col-sm-12">
+              <h3 class="date">
+                Monday
+              </h3>
+              <p class="description">
+                Partly Cloud
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="icon1 col-sm-6">
+              <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="Clear" id="icon" />
+            </div>
+            <div class="col-sm-6 temp">
+              <strong class="now-temperature">
+                15
+              </strong>
+            </div>
+            <div class="col-sm-6 degree">
+              <span class="units">
+                <a href="#" id="celsius-link" class="active">ºC</a> |
+                <a href="#" id="fahrenheit-link">ºF</a>
+              </span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="feelslike col-sm-12">
+              <p class="feelstext">
+                Feels like
+                <span class="feels">
+                  13ºC
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="pressure col-sm-6">
+              <p class="precipitation-description">
+                Pressure:
+              </p>
+            </div>
+            <div class="precipitationwhole col-sm-6">
+              <p class="pressure-value">
+                30
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="humidity col-sm-6">
+              <p class="humidity-description">
+                Humidity:
+              </p>
+            </div>
+            <div class="humiditywhole col-sm-6">
+              <p id="humidity">
+                40%
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="visibilityclass col-sm-6">
+              <p id="winddescription">
+                Wind:
+              </p>
+            </div>
+            <div class="visibilitynumber col-sm-6">
+              <p id="wind">
+                6
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="cloudsclass col-sm-6">
+              <p class="visibility-description">
+                Visibility:
+              </p>
+            </div>
+            <div class="col-sm-6">
+              <p class="visibility">
+                20
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="col-sm-6 degree">
-        <span class="units">
-          <a href="#" id="celsius-link" class="active">ºC</a> |
-          <a href="#" id="fahrenheit-link">ºF</a>
-        </span>
-        </div>
-    </div>
-    <div class="row">
-      <div class="feelslike col-sm-12">
-        <p class="feelstext">
-          Feels like
-          <span class="feels">
-            13ºC
-          </span>
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="pressure col-sm-6">
-        <p class="precipitation-description">
-          Pressure:
-        </p>
-      </div>
-      <div class="precipitationwhole col-sm-6">
-        <p class="pressure-value">
-          30
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="humidity col-sm-6">
-        <p class="humidity-description">
-          Humidity:
-        </p>
-      </div>
-      <div class="humiditywhole col-sm-6">
-        <p id="humidity">
-          40%
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="visibilityclass col-sm-6">
-        <p id="winddescription">
-          Wind:
-        </p>
-      </div>
-      <div class="visibilitynumber col-sm-6">
-        <p id="wind">
-          6
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="cloudsclass col-sm-6">
-        <p class="visibility-description">
-          Visibility:
-        </p>
-      </div>
-      <div class="col-sm-6">
-        <p class="visibility">
-          20
-        </p>
-      </div>
-    </div>
-  </div>
-  <!---
+        <!---
       Added bar chart from JSCharting library comparing minimum and maximum forecast temperatures
       JSdocs: https://jscharting.com/documentation/#node=Tutorials.legend
       --->
-  <div id="chartDiv" style="max-width: 380px;height: 380px"></div>
-  <div class="weather-forecast " id="forecast">
-  </div>
-</div>
-<br />
-<div class="weather-forecast-hourly" id="hourly">
-</div>
-</div>
-<h6>
-  <a href="https://github.com/tsdamas/Weather-Forecast-app" class="source">Open Source code</a> by Thais Damasceno
-</h6>
+        <div id="chartDiv" style="max-width: 380px;height: 380px"></div>
+        <div class="weather-forecast " id="forecast">
+        </div>
+      </div>
+      <br />
+      <!--Hourly Forecast-->
+      <div class="weather-forecast-hourly" id="hourly">
+      </div>
+    </div>
+    <h6>
+      <a href="https://github.com/tsdamas/Weather-Forecast-app" class="source">Open Source code</a> by Thais Damasceno
+    </h6>
+  </body>
+  <script src="src/index.js"></script>
+  <script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
 
-</body>
-<script src="src/index.js"></script>
-<script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
 </html>
