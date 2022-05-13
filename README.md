@@ -1,14 +1,15 @@
-# dictionary-react-app
+# weather-forecast-app
 
 Check the weather forecast of over 200,000 cities around the World. 
 
 ## Description
 
-Welcome to Weather App fellow Developer, this is where you find dictionary application built in React and using [API] (https://openweathermap.org). Here you can search:
+Welcome to Weather App fellow Developer, this is where you find weather application built with vanila Javascript and using [API] (https://openweathermap.org). Here you can search:
 
 - Current temperature from almost every city in the world(over 200,000!);
 - Get a the daily forecast information for 7 days;
 - Hourly forecast for the next 5 hours;
+- Chart Comparing the max and min temperature of the next 7 days;
 
 It was my first weather app, I faced some challenges building the graph for the forecast weather and turn it completely responsive is my next improvement.
 
