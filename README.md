@@ -1,5 +1,7 @@
 # weather-forecast-app
 
+![alt text](https://github.com/tsdamas/weather-forecast-app/blob/main/image.jpg?raw=true)
+
 Check the weather forecast of over 200,000 cities around the World. 
 
 ## Description
