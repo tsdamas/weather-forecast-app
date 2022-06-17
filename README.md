@@ -47,7 +47,7 @@ To use the Open Weather API, you will need to get a key to access the informatio
 
 ## Screenshots
 
-![Home Page](images/screencapture-weather-forecast-app "Home Page")
+![Home Page](/images/screencapture-weather-forecast-app "Home Page")
 
 ## Future Updates
 
