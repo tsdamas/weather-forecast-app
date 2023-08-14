@@ -1,6 +1,6 @@
 # weather-forecast-app
 
-![alt text](https://github.com/tsdamas/weather-forecast-app/blob/main/images/screencapture-weather-forecast-app.png?raw=true)
+![weather app](https://github.com/tsdamas/weather-forecast-app/blob/main/images/screencapture-weather-forecast-app.png?raw=true)
 
 Check the weather forecast of over 200,000 cities around the World. 
 
@@ -50,7 +50,7 @@ To use the Open Weather API, you will need to get a key to access the informatio
 
 ## Screenshots
 
-![Home Page](/images/screencapture-weather-forecast-app "Home Page")
+![weather app](https://github.com/tsdamas/weather-forecast-app/blob/main/images/screencapture-weather-forecast-app.png?raw=true)
 
 ## Future Updates
 
